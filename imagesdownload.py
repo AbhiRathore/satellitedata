@@ -12,8 +12,6 @@ citydf = citydf_total[~citydf_total['cluster'].isin(alreadydone)]
 
 print(len(citydf),len(citydf_total))
 
-yrdata = pd.read_csv("/content/gdrive/MyDrive/images_satellite/yrdata_range.csv")
-yrdata = yrdata[yrdata['year']>=1996].reset_index(drop = True) ## since night light images are only available from 1996
 for city in citydf['cluster'].unique():
     print(city)
     lat = float(citydf[citydf['cluster']==city]['latitude'].unique()[0])
@@ -31,15 +29,3 @@ for city in citydf['cluster'].unique():
 
 
 
-
-
-    # for i in range(len(yrdata)):
-    #     print(i)
-    #     year = yrdata['year'][i]
-    #     start_date = yrdata['start_date'][i]
-    #     end_date = yrdata['end_date'][i]
-    #     print(start_date,end_date)
-    #     nightlightimg = si.nightlightimages(city,start_date,end_date,year,lat,lon)
-    #     nightlightimg.getgeometry()
-    #     img_col = nightlightimg.nightlightdata()
-    #     nightlightimg.saveimages()
