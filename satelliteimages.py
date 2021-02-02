@@ -69,8 +69,9 @@ def as_geojson(geom, epsg=None):
     return geojson
 
 class nightlightimages:
-    def __init__(self,city,startdate,enddate,year,lat,lon):
+    def __init__(self,city,country,startdate,enddate,year,lat,lon):
         self.city = city 
+        self.country = country
         self.startdate = startdate
         self.enddate = enddate
         self.year = year
@@ -98,11 +99,12 @@ class nightlightimages:
         return self.img_col
 
     def saveimages(self):
+        clustnum = int(float(self.city.split("cluster_")[1]))
         self.task_config = {
-            'description': self.city + "_images_" + str(self.year),
+            'description': self.country + "_images_" + str(self.year),
             'scale': 30,
-            'folder': 'images_satellite_' + self.city,
-            'fileNamePrefix':self.city + "_images_" + str(self.year),
+            'folder': 'satellite_image_datafiles',
+            'fileNamePrefix':self.country + "_" +  str(clustnum) + "_" + str(self.year),
             'region':  self.geom.getInfo()['coordinates'] 
         }
         self.task = ee.batch.Export.image.toDrive(image=self.img_col,**self.task_config)
