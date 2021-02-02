@@ -25,19 +25,19 @@ citydf = citydf_total[~citydf_total['cluster'].isin(alreadydone)]
 
 print(len(citydf),len(citydf_total))
 
-# for city in citydf['cluster'].unique():
-#     print(city)
-#     lat = float(citydf[citydf['cluster']==city]['latitude'].unique()[0])
-#     lon = citydf[citydf['cluster']==city]['longitude'].unique()[0]
-#     start_date = '2018-1-1'
-#     end_date = '2018-12-31'
-#     print(start_date,end_date)
-#     city = "cluster_" + str(city)
-#     year = 2018
-#     nightlightimg = si.nightlightimages(city,country,start_date,end_date,year,lat,lon)
-#     nightlightimg.getgeometry()
-#     img_col = nightlightimg.nightlightdata()
-#     nightlightimg.saveimages()
+for city in citydf['cluster'].unique():
+    print(city)
+    lat = float(citydf[citydf['cluster']==city]['latitude'].unique()[0])
+    lon = citydf[citydf['cluster']==city]['longitude'].unique()[0]
+    start_date = '2016-1-1'
+    end_date = '2017-12-31'
+    print(start_date,end_date)
+    city = "cluster_" + str(city)
+    year = 2016
+    nightlightimg = si.nightlightimages(city,country,start_date,end_date,year,lat,lon)
+    nightlightimg.getgeometry()
+    img_col = nightlightimg.nightlightdata()
+    nightlightimg.saveimages()
 
 
 
